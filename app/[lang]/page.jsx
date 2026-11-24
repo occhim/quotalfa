@@ -3,6 +3,7 @@ import PostCard from '@/components/PostCard';
 import LeadBand from '@/components/LeadBand';
 import HeroCalc from '@/components/HeroCalc';
 import { getPosts, card } from '@/lib/posts';
+import { getEAs } from '@/lib/ea';
 import { meta } from '@/lib/seo';
 import { site } from '@/lib/site';
 
@@ -45,6 +46,7 @@ export default async function Home({ params }) {
   const byId = Object.fromEntries(posts.map((p) => [p.id, p]));
   const href = (id, fallback) => (byId[id] ? `/${lang}/blog/${byId[id].slug}` : fallback);
   const [lead, ...rest] = posts;
+  const hasEAs = getEAs(lang).length > 0;
 
   const formulas = [
     {
@@ -175,9 +177,13 @@ export default async function Home({ params }) {
             <p className="eyebrow">Expert Advisor</p>
             <h2 className="h2 mt-3">{it ? 'Sistemi automatici, letti con i numeri' : 'Automated systems, read by the numbers'}</h2>
             <p className="mt-3 max-w-2xl text-sm text-soft">
-              {it
-                ? 'Schede di Expert Advisor per MetaTrader con backtest, forward test e limiti dichiarati, più i sei criteri per valutarne uno.'
-                : 'MetaTrader Expert Advisor fact sheets with backtests, forward tests and stated limits, plus six criteria for assessing one.'}
+              {hasEAs
+                ? (it
+                  ? 'Schede di Expert Advisor per MetaTrader con backtest, forward test e limiti dichiarati, più i sei criteri per valutarne uno.'
+                  : 'MetaTrader Expert Advisor fact sheets with backtests, forward tests and stated limits, plus six criteria for assessing one.')
+                : (it
+                  ? 'I sei criteri per valutare un Expert Advisor per MetaTrader. Le prime schede, con backtest, forward test e limiti dichiarati, sono in preparazione.'
+                  : 'Six criteria for assessing a MetaTrader Expert Advisor. The first fact sheets, with backtests, forward tests and stated limits, are in preparation.')}
             </p>
             <Link href={`/${lang}/ea`} className="btn-ghost mt-6 self-start">{it ? 'Vai agli EA' : 'See the EAs'} →</Link>
           </div>
