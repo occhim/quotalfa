@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+html { scroll-behavior: smooth; }
+body { @apply bg-ink text-text font-sans antialiased; }
+::selection { background: #1FD1A5; color: #07142A; }
+:focus-visible { outline: 2px solid #1FD1A5; outline-offset: 2px; }
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-wrap px-5 sm:px-8; }
+  .eyebrow { @apply font-mono text-[11px] uppercase tracking-[0.18em] text-brand; }
+  .h1 { @apply font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl; }
+  .h2 { @apply font-display text-2xl leading-tight tracking-tight sm:text-3xl; }
+  .card { @apply rounded-lg border border-line bg-panel; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-md bg-brand px-5 py-3 text-sm font-semibold text-ink transition hover:bg-[#5BE3BF] disabled:opacity-60; }
+  .btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-md border border-line px-5 py-3 text-sm font-semibold text-text transition hover:border-brand hover:text-brand; }
+  .field { @apply w-full rounded-md border border-line bg-ink px-3.5 py-3 text-sm text-text placeholder:text-mute focus:border-brand focus:outline-none; }
+  .label { @apply mb-1.5 block font-mono text-[11px] uppercase tracking-wider text-mute; }
+  .num { @apply font-mono tabular-nums; }
+  .article { @apply prose prose-invert max-w-none prose-headings:font-display prose-headings:tracking-tight prose-h2:mt-12 prose-h2:text-[1.7rem] prose-h3:text-xl prose-p:text-soft prose-li:text-soft prose-strong:text-text prose-a:text-brand prose-a:no-underline hover:prose-a:underline prose-blockquote:border-brand prose-blockquote:text-text prose-img:rounded-lg prose-img:border prose-img:border-line prose-th:text-text prose-td:text-soft prose-hr:border-line; }
+  .article h2 { scroll-margin-top: 6rem; }
+  .article img { width: 100%; aspect-ratio: 800 / 420; }
+  .article table { @apply font-mono text-sm; }
+}
+
+@media print {
+  header, footer, .no-print { display: none !important; }
+  body { background: #fff; color: #111; }
+  .print-sheet, .print-sheet * { color: #111 !important; border-color: #bbb !important; background: transparent !important; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
